@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">iSonidos</string>
     <string name="sonido01">nameralph</string>
-
-
+    <string name="video01">video</string>
 </resources>
