@@ -10,6 +10,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.MediaController;
 import android.widget.VideoView;
 
 import java.lang.reflect.Field;
@@ -64,20 +65,20 @@ public class MainActivity extends AppCompatActivity {
     private Button creaBoton(int i, Field[] _listaCanciones) {
         LinearLayout.LayoutParams parametrosBotones = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT);
         parametrosBotones.weight = 1;
-        parametrosBotones.setMargins(5, 5, 5, 5);
+        parametrosBotones.setMargins(8, 8, 8, 8);
         parametrosBotones.gravity = Gravity.CENTER_HORIZONTAL;
         Button b = new Button(this);
         b.setLayoutParams(parametrosBotones);
         b.setText(_listaCanciones[i].getName());
         b.setTextColor(Color.WHITE);
-        b.setTextSize(10);
-        b.setBackgroundColor(Color.BLUE);
+        b.setTextSize(8);
+        b.setBackgroundColor(Color.rgb(73,182, 117));
         b.setAllCaps(true); //todas las letras del botón en mayúscula/minúscula
         int id = this.getResources().getIdentifier(_listaCanciones[i].getName(), "raw", this.getPackageName());
         String nombreLargo = _listaCanciones[i].getName();
 
         if (nombreLargo != null && nombreLargo.substring(0, 2).contains("v_")) {
-            b.setBackgroundColor(Color.rgb(255, 140, 0));
+            b.setBackgroundColor(Color.rgb(78, 59, 49));
         }
         b.setTag(id);
         b.setId(i + 50);
@@ -99,6 +100,11 @@ public class MainActivity extends AppCompatActivity {
             Uri uri = Uri.parse("android.resource://"+getPackageName()+"/"+view.getTag());
             videoview.setVideoURI(uri);
             videoview.start();
+
+            MediaController mediaController = new MediaController(this);
+            videoview.setMediaController(mediaController);
+            mediaController.setAnchorView(videoview);
+
         } else {
             MediaPlayer m = new MediaPlayer();
             m = MediaPlayer.create(this, (int) findViewById(view.getId()).getTag());
