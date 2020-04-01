@@ -8,7 +8,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.VideoView;
 
+import java.util.HashMap;
+
 public class MainActivity extends AppCompatActivity {
+
+    HashMap<String, String> listaSonidos=new HashMap<String, String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
